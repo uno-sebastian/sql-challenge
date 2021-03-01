@@ -17,6 +17,13 @@ def match_headers_with_type(headers, sample_row):
 		matched[headers[i]] = data_type
 	return matched
 
+def is_primary_key(value):
+	if '_no' in value:
+		return True
+	if '_id' in value:
+		return True
+	return False
+
 def create_sql_table(table_name, headers, sample_row):
 	matched = match_headers_with_type(headers, sample_row)
 	table = []
@@ -28,6 +35,15 @@ def create_sql_table(table_name, headers, sample_row):
 		if i != (length - 1):
 			line += ','
 		table.append(line + '\n')
+	add_keys = ''
+	for i in range(length):
+		if is_primary_key(headers[i]):
+			add_keys += f'{headers[i]}, '
+	if len(add_keys) > 0:
+		last_line = table[-1]
+		table[-1] = last_line[:len(last_line) - 1]
+		add_keys = add_keys[:len(add_keys) - 2]
+		table.append( f',\n\tPRIMARY KEY ({add_keys})\n')
 	table.append(');\n\n')
 	return table
 

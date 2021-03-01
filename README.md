@@ -10,10 +10,13 @@ It is a beautiful spring day, and it is two weeks since you have been hired as a
 
 #### Data Engineering
 
-* Use the information you have to create a table schema for each of the six CSV files.
+![data_graph.png](data_graph.png)
 
-  * For the primary keys check to see if the column is unique, otherwise create a [composite key](https://en.wikipedia.org/wiki/Compound_key). Which takes two primary keys in order to uniquely identify a row.
-  * Be sure to create tables in the correct order to handle foreign keys.
+Ref: [dbdiagram was used for this graph](https://dbdiagram.io/home)
+
+
+
+* Use the information you have to create a table schema for each of the six CSV files.
 
 * Import each CSV file into the corresponding SQL table.
 
